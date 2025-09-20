@@ -214,9 +214,11 @@ body {
 
 .rate > label {
   position: relative;
+  display: block;
   width: 1.4rem;
   height: 1.4rem;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .rate > label::before,
