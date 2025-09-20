@@ -1,9 +1,39 @@
 // /js/review-image-slider.js
 
 document.addEventListener('DOMContentLoaded', function () {
+  syncReviewImageAspectRatios();
   initReviewImageSlider();
   initReviewImageMagnifier();
 });
+
+function syncReviewImageAspectRatios() {
+  document.querySelectorAll('.review-image-wrapper').forEach(function (wrapper) {
+    var img = wrapper.querySelector('.review-image');
+    if (!img) {
+      return;
+    }
+
+    function applyRatio() {
+      if (!img.naturalWidth || !img.naturalHeight) {
+        return;
+      }
+      var ratio = img.naturalHeight / img.naturalWidth;
+      if (!isFinite(ratio) || ratio <= 0) {
+        return;
+      }
+      wrapper.style.setProperty('--image-aspect-ratio', ratio.toString());
+    }
+
+    if (img.complete) {
+      applyRatio();
+      if (!img.naturalWidth || !img.naturalHeight) {
+        img.addEventListener('load', applyRatio, { once: true });
+      }
+    } else {
+      img.addEventListener('load', applyRatio, { once: true });
+    }
+  });
+}
 
 function initReviewImageSlider() {
   document.querySelectorAll('.review-image-slider').forEach(function (slider) {
