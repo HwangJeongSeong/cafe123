@@ -63,25 +63,40 @@
                        role="radiogroup"
                        aria-label="별점 선택">
                     <input type="radio" id="edit-rating10" th:field="*{rating}" value="5.0" title="5점" aria-label="5점" required>
-                    <label for="edit-rating10"></label>
+                    <label th:for="${#ids.prev('rating')}"
+                           for="edit-rating10"></label>
                     <input type="radio" id="edit-rating9" th:field="*{rating}" value="4.5" title="4.5점" aria-label="4.5점">
-                    <label class="half" for="edit-rating9"></label>
+                    <label class="half"
+                           th:for="${#ids.prev('rating')}"
+                           for="edit-rating9"></label>
                     <input type="radio" id="edit-rating8" th:field="*{rating}" value="4.0" title="4점" aria-label="4점">
-                    <label for="edit-rating8"></label>
+                    <label th:for="${#ids.prev('rating')}"
+                           for="edit-rating8"></label>
                     <input type="radio" id="edit-rating7" th:field="*{rating}" value="3.5" title="3.5점" aria-label="3.5점">
-                    <label class="half" for="edit-rating7"></label>
+                    <label class="half"
+                           th:for="${#ids.prev('rating')}"
+                           for="edit-rating7"></label>
                     <input type="radio" id="edit-rating6" th:field="*{rating}" value="3.0" title="3점" aria-label="3점">
-                    <label for="edit-rating6"></label>
+                    <label th:for="${#ids.prev('rating')}"
+                           for="edit-rating6"></label>
                     <input type="radio" id="edit-rating5" th:field="*{rating}" value="2.5" title="2.5점" aria-label="2.5점">
-                    <label class="half" for="edit-rating5"></label>
+                    <label class="half"
+                           th:for="${#ids.prev('rating')}"
+                           for="edit-rating5"></label>
                     <input type="radio" id="edit-rating4" th:field="*{rating}" value="2.0" title="2점" aria-label="2점">
-                    <label for="edit-rating4"></label>
+                    <label th:for="${#ids.prev('rating')}"
+                           for="edit-rating4"></label>
                     <input type="radio" id="edit-rating3" th:field="*{rating}" value="1.5" title="1.5점" aria-label="1.5점">
-                    <label class="half" for="edit-rating3"></label>
+                    <label class="half"
+                           th:for="${#ids.prev('rating')}"
+                           for="edit-rating3"></label>
                     <input type="radio" id="edit-rating2" th:field="*{rating}" value="1.0" title="1점" aria-label="1점">
-                    <label for="edit-rating2"></label>
+                    <label th:for="${#ids.prev('rating')}"
+                           for="edit-rating2"></label>
                     <input type="radio" id="edit-rating1" th:field="*{rating}" value="0.5" title="0.5점" aria-label="0.5점">
-                    <label class="half" for="edit-rating1"></label>
+                    <label class="half"
+                           th:for="${#ids.prev('rating')}"
+                           for="edit-rating1"></label>
                   </div>
                 </div>
                 <div class="rating-picker__value-group">
