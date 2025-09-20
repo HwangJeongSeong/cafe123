@@ -7,6 +7,35 @@
   const csrfToken  = document.querySelector('meta[name="_csrf"]')?.getAttribute('content');
   const csrfHeader = document.querySelector('meta[name="_csrf_header"]')?.getAttribute('content');
 
+  const ratingSlider = document.getElementById('createRating');
+  const ratingDisplay = document.querySelector('[data-rating-display]');
+  const ratingValue = document.getElementById('createRatingValue');
+
+  const minRating = ratingSlider ? Number.parseFloat(ratingSlider.min) : 0;
+  const maxRating = ratingSlider ? Number.parseFloat(ratingSlider.max) : 5;
+
+  const syncRating = (value) => {
+    const numericValue = Number.parseFloat(value);
+    const fallback = Number.isFinite(numericValue) ? numericValue : minRating;
+    const rating = Math.min(maxRating, Math.max(minRating, fallback));
+    if (ratingDisplay) {
+      ratingDisplay.style.setProperty('--rating', rating.toString());
+    }
+    if (ratingValue) {
+      ratingValue.textContent = rating.toFixed(1);
+    }
+  };
+
+  if (ratingSlider) {
+    syncRating(ratingSlider.value || ratingSlider.getAttribute('value'));
+    ratingSlider.addEventListener('input', (event) => {
+      syncRating(event.target.value);
+    });
+    ratingSlider.addEventListener('change', (event) => {
+      syncRating(event.target.value);
+    });
+  }
+
   form.addEventListener('submit', async (e) => {
     if (cafeId && localStorage.getItem('certifiedCafe_' + cafeId) !== 'true') {
       e.preventDefault();
@@ -67,6 +96,9 @@
       // 3) 폼 리셋
       form.reset();
       form.classList.remove('was-validated');
+      if (ratingSlider) {
+        syncRating(ratingSlider.value || ratingSlider.getAttribute('value'));
+      }
       if (cafeId) {
         localStorage.removeItem('certifiedCafe_' + cafeId);
       }
