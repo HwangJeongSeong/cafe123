@@ -1,27 +1,29 @@
 :root {
-  --ink: #2F1F1B;
-  --ink-soft: #75645B;
-  --muted: #A49790;
+  --ink: #1F2A37;
+  --ink-soft: #4B5563;
+  --muted: #9CA3AF;
   --surface: #FFFFFF;
-  --surface-alt: #F8F5F2;
-  --accent: #D5835F;
-  --accent-dark: #B56B47;
-  --danger: #D46A6A;
-  --shadow: 0 20px 54px rgba(53, 36, 27, 0.18);
-  --radius-lg: 28px;
-  --radius-md: 18px;
+  --surface-alt: #F3F4F6;
+  --accent: #4F46E5;
+  --accent-dark: #3730A3;
+  --accent-soft: #EEF2FF;
+  --danger: #DC5A5A;
+  --shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+  --radius-lg: 32px;
+  --radius-md: 20px;
   --radius-sm: 12px;
-  --line: rgba(47, 31, 27, 0.08);
+  --line: rgba(79, 70, 229, 0.1);
 }
 
 body {
   font-family: "Noto Sans KR", sans-serif;
-  background: var(--surface-alt);
+  background: #ffffff;
   color: var(--ink);
 }
 
 .review-page {
   padding-bottom: 3rem;
+  background: linear-gradient(180deg, rgba(79, 70, 229, 0.05) 0%, rgba(79, 70, 229, 0) 160px);
 }
 
 .review-edit.card {
@@ -29,10 +31,11 @@ body {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
   background: var(--surface);
+  overflow: hidden;
 }
 
 .review-edit .card-body {
-  padding: clamp(2rem, 4vw, 3rem);
+  padding: clamp(2.2rem, 4vw, 3.4rem);
   display: flex;
   flex-direction: column;
   gap: clamp(1.8rem, 3vw, 2.6rem);
@@ -41,9 +44,9 @@ body {
 .review-edit__hero {
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgba(213, 131, 95, 0.16) 0%, rgba(213, 131, 95, 0.04) 100%);
-  padding: clamp(1.8rem, 3vw, 2.6rem);
+  border-radius: calc(var(--radius-lg) - 4px);
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(79, 70, 229, 0.04) 100%);
+  padding: clamp(2rem, 3.8vw, 2.8rem);
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
@@ -52,10 +55,11 @@ body {
 .review-edit__hero-pattern {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 10% -10%, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0) 60%),
-              radial-gradient(circle at 90% 120%, rgba(213, 131, 95, 0.3) 0%, rgba(213, 131, 95, 0) 65%);
+  background: radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.2) 0%, rgba(79, 70, 229, 0) 45%),
+              radial-gradient(circle at 120% 120%, rgba(14, 116, 144, 0.28) 0%, rgba(14, 116, 144, 0) 60%),
+              linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 75%);
   pointer-events: none;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .review-edit__hero-content {
@@ -77,24 +81,25 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.75rem;
-  padding: 0.35rem 0.8rem;
+  font-size: 0.78rem;
+  padding: 0.4rem 0.9rem;
   border-radius: 999px;
-  background: rgba(213, 131, 95, 0.12);
+  background: rgba(79, 70, 229, 0.12);
   color: var(--accent);
   font-weight: 600;
 }
 
 .hero-title {
-  font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+  font-size: clamp(1.9rem, 2.7vw, 2.5rem);
   font-weight: 700;
   margin: 0.6rem 0 0;
 }
 
 .hero-caption {
   color: var(--ink-soft);
-  margin: 0.4rem 0 0;
-  font-size: 0.95rem;
+  margin: 0.35rem 0 0;
+  font-size: 0.96rem;
+  line-height: 1.6;
 }
 
 .review-edit__intro-status {
@@ -113,16 +118,19 @@ body {
 }
 
 .review-edit__origin-link {
-  backdrop-filter: blur(6px);
-  border-color: rgba(47, 31, 27, 0.12) !important;
-  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  border-color: rgba(79, 70, 229, 0.16) !important;
+  background: rgba(255, 255, 255, 0.75);
   color: var(--ink) !important;
   font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .review-edit__origin-link:hover,
 .review-edit__origin-link:focus-visible {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(79, 70, 229, 0.12);
 }
 
 .review-edit__steps {
@@ -139,28 +147,28 @@ body {
 .review-edit__step {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  padding: 0.9rem 1.1rem;
-  background: rgba(255, 255, 255, 0.65);
+  gap: 0.45rem;
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: var(--radius-md);
   color: var(--ink-soft);
-  font-size: 0.85rem;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 18px 32px rgba(47, 31, 27, 0.1);
+  font-size: 0.86rem;
+  border: 1px solid rgba(79, 70, 229, 0.12);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
 }
 
 .review-edit__step-index {
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: var(--accent);
 }
 
 .review-edit__step--active {
-  background: rgba(213, 131, 95, 0.85);
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.9) 0%, rgba(59, 130, 246, 0.85) 100%);
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 22px 40px rgba(213, 131, 95, 0.3);
+  box-shadow: 0 22px 40px rgba(79, 70, 229, 0.28);
 }
 
 .review-edit__step--active .review-edit__step-index {
@@ -173,7 +181,7 @@ body {
   gap: 0.35rem;
   padding: 0.4rem 0.75rem;
   border-radius: 999px;
-  background: rgba(47, 31, 27, 0.08);
+  background: rgba(79, 70, 229, 0.1);
   color: var(--ink);
   font-weight: 600;
   font-size: 0.78rem;
@@ -185,8 +193,8 @@ body {
   gap: 0.6rem;
   padding: 0.65rem 0.8rem;
   border-radius: var(--radius-md);
-  background: var(--surface-alt);
-  border: 1px solid var(--line);
+  background: var(--accent-soft);
+  border: 1px solid rgba(79, 70, 229, 0.2);
 }
 
 .review-edit__current-value {
@@ -204,17 +212,17 @@ body {
 .form-section {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  background: var(--surface-alt);
+  gap: 1.35rem;
+  background: var(--surface);
   border-radius: var(--radius-md);
-  border: 1px solid var(--line);
-  padding: clamp(1.4rem, 2.6vw, 1.8rem);
-  box-shadow: 0 18px 32px rgba(47, 31, 27, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: clamp(1.6rem, 2.8vw, 2rem);
+  box-shadow: 0 18px 34px rgba(15, 23, 42, 0.08);
 }
 
 .form-section--summary {
-  background: linear-gradient(135deg, rgba(213, 131, 95, 0.18) 0%, rgba(213, 131, 95, 0.06) 100%);
-  border: 1px solid rgba(213, 131, 95, 0.22);
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.16) 0%, rgba(59, 130, 246, 0.08) 100%);
+  border: 1px solid rgba(79, 70, 229, 0.22);
 }
 
 .form-section__header {
@@ -230,22 +238,23 @@ body {
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--accent);
-  background: rgba(213, 131, 95, 0.16);
-  padding: 0.35rem 0.8rem;
+  background: rgba(79, 70, 229, 0.16);
+  padding: 0.35rem 0.85rem;
   border-radius: 999px;
 }
 
 .form-section__title {
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   font-weight: 700;
-  margin: 0 0 0.3rem;
+  margin: 0 0 0.25rem;
 }
 
 .form-section__description {
   margin: 0;
   color: var(--ink-soft);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   max-width: 560px;
+  line-height: 1.6;
 }
 
 .visually-hidden {
@@ -288,11 +297,11 @@ body {
   min-width: 3.2rem;
   text-align: center;
   font-weight: 700;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   color: var(--accent);
   border-radius: 999px;
-  background: rgba(213, 131, 95, 0.12);
-  padding: 0.35rem 0.8rem;
+  background: rgba(79, 70, 229, 0.12);
+  padding: 0.4rem 0.9rem;
 }
 
 .rating-picker__value-caption {
@@ -303,17 +312,18 @@ body {
 
 .review-edit__field textarea {
   min-height: 220px;
-  background: var(--surface-alt);
+  background: var(--surface);
   border-radius: var(--radius-md);
-  border: 1px solid var(--line);
-  padding: 1.2rem 1.4rem;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  padding: 1.3rem 1.5rem;
   resize: vertical;
   color: var(--ink);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .review-edit__field textarea:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 0.2rem rgba(213, 131, 95, 0.15);
+  box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.14);
 }
 
 .review-edit__counter {
@@ -332,10 +342,10 @@ body {
 
 .review-edit__upload,
 .review-edit__existing {
-  background: var(--surface-alt);
+  background: var(--surface);
   border-radius: var(--radius-md);
-  border: 1px solid var(--line);
-  padding: 1.5rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 1.6rem;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -347,10 +357,11 @@ body {
   grid-template-columns: auto 1fr;
   gap: 1rem;
   align-items: center;
-  border: 1px dashed rgba(47, 31, 27, 0.24);
+  border: 1px dashed rgba(79, 70, 229, 0.24);
   border-radius: var(--radius-md);
-  padding: 1.2rem 1.3rem;
-  background: rgba(255, 255, 255, 0.65);
+  padding: 1.3rem 1.4rem;
+  background: rgba(79, 70, 229, 0.06);
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .review-edit__upload-box input[type="file"] {
@@ -373,7 +384,7 @@ body {
 }
 
 .review-edit__upload-copy strong {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   color: var(--ink);
 }
 
@@ -381,6 +392,12 @@ body {
   font-size: 0.8rem;
   color: var(--muted);
   margin: -0.2rem 0 0;
+}
+
+.review-edit__upload-box:hover,
+.review-edit__upload-box:focus-within {
+  border-color: var(--accent);
+  background: rgba(79, 70, 229, 0.12);
 }
 
 .review-edit__file-list {
@@ -397,11 +414,11 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 0.8rem;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1.1rem;
   border-radius: var(--radius-sm);
   background: var(--surface);
-  border: 1px solid var(--line);
-  box-shadow: 0 10px 26px rgba(47, 31, 27, 0.1);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
 }
 
 .review-edit__file-name {
@@ -413,10 +430,10 @@ body {
 
 .review-edit__file-remove {
   border: none;
-  background: rgba(213, 131, 95, 0.16);
+  background: rgba(79, 70, 229, 0.12);
   color: var(--accent);
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -424,18 +441,20 @@ body {
   cursor: pointer;
   font-size: 1rem;
   line-height: 1;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .review-edit__file-remove:hover,
 .review-edit__file-remove:focus-visible {
-  background: rgba(213, 131, 95, 0.28);
+  background: rgba(79, 70, 229, 0.22);
   color: var(--accent-dark);
+  transform: translateY(-1px);
 }
 
 .review-edit__file-empty {
   padding: 0.75rem 1rem;
   border-radius: var(--radius-sm);
-  background: rgba(47, 31, 27, 0.04);
+  background: rgba(15, 23, 42, 0.04);
   color: var(--muted);
   text-align: center;
   font-size: 0.9rem;
@@ -470,8 +489,9 @@ body {
   border-radius: var(--radius-sm);
   overflow: hidden;
   background: var(--surface);
-  border: 1px solid rgba(47, 31, 27, 0.12);
-  box-shadow: 0 14px 30px rgba(47, 31, 27, 0.16);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .review-edit__existing-item img {
@@ -479,6 +499,12 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.review-edit__existing-item:hover,
+.review-edit__existing-item:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 40px rgba(15, 23, 42, 0.16);
 }
 
 .review-edit__existing-remove {
@@ -489,7 +515,7 @@ body {
   height: 28px;
   border-radius: 50%;
   border: none;
-  background: rgba(47, 31, 27, 0.78);
+  background: rgba(17, 24, 39, 0.82);
   color: #fff;
   font-size: 1.1rem;
   line-height: 1;
@@ -497,11 +523,13 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .review-edit__existing-remove:hover,
 .review-edit__existing-remove:focus-visible {
-  background: rgba(47, 31, 27, 0.92);
+  background: rgba(17, 24, 39, 0.95);
+  transform: translateY(-1px);
 }
 
 .review-edit__actions {
@@ -532,36 +560,45 @@ body {
 .review-page .btn-primary {
   background: var(--accent);
   border-color: var(--accent);
+  box-shadow: 0 16px 30px rgba(79, 70, 229, 0.24);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .review-page .btn-primary:hover,
 .review-page .btn-primary:focus-visible {
   background: var(--accent-dark);
   border-color: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 20px 36px rgba(79, 70, 229, 0.28);
 }
 
 .review-page .btn-outline-secondary {
   color: var(--ink);
   border-radius: 999px;
-  border-color: rgba(47, 31, 27, 0.18);
+  border-color: rgba(15, 23, 42, 0.16);
   background: transparent;
+  transition: color 0.2s ease, background 0.2s ease, border 0.2s ease;
 }
 
 .review-page .btn-outline-secondary:hover,
 .review-page .btn-outline-secondary:focus-visible {
-  background: rgba(47, 31, 27, 0.06);
-  border-color: rgba(47, 31, 27, 0.24);
+  background: rgba(79, 70, 229, 0.08);
+  border-color: rgba(79, 70, 229, 0.24);
+  color: var(--accent);
 }
 
 .review-page .btn-danger {
   background: var(--danger);
   border-color: var(--danger);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .review-page .btn-danger:hover,
 .review-page .btn-danger:focus-visible {
   background: #b75858;
   border-color: #b75858;
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(220, 90, 90, 0.24);
 }
 
 @media (max-width: 768px) {
@@ -570,7 +607,7 @@ body {
   }
 
   .review-edit__hero {
-    padding: 1.4rem 1.2rem;
+    padding: 1.6rem 1.3rem;
   }
 
   .review-edit__hero-meta {
@@ -586,6 +623,13 @@ body {
   }
 
   .form-section {
-    padding: 1.2rem 1rem;
+    padding: 1.3rem 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }
