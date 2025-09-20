@@ -10,6 +10,7 @@
   const ratingInputs = Array.from(form.querySelectorAll('input[name="rating"]'));
   const ratingDisplay = document.querySelector('[data-rating-display]');
   const ratingValue = document.getElementById('createRatingValue');
+  const starWrapper = form.querySelector('.rating-picker__star-wrapper');
 
   const ratingValues = ratingInputs
     .map((input) => Number.parseFloat(input.value))
@@ -52,6 +53,62 @@
     });
   } else {
     syncRating(minRating);
+  }
+
+  const findRatingInput = (value) => {
+    const numericValue = Number.parseFloat(value);
+    if (!Number.isFinite(numericValue)) return null;
+    return ratingInputs.find((input) => {
+      const inputValue = Number.parseFloat(input.value);
+      return Number.isFinite(inputValue) && Math.abs(inputValue - numericValue) < 0.001;
+    }) || null;
+  };
+
+  const getRatingFromPosition = (clientX) => {
+    if (!starWrapper || !ratingValues.length) return null;
+    const rect = starWrapper.getBoundingClientRect();
+    const width = rect.width;
+    if (!width || Number.isNaN(width)) return null;
+    const ratio = (clientX - rect.left) / width;
+    const clamped = Math.min(0.999999, Math.max(0, ratio));
+    const index = Math.min(ratingValues.length - 1, Math.floor(clamped * ratingValues.length));
+    return ratingValues[index] ?? null;
+  };
+
+  if (starWrapper && ratingInputs.length) {
+    starWrapper.addEventListener('pointermove', (event) => {
+      if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return;
+      const hoveredRating = getRatingFromPosition(event.clientX);
+      if (hoveredRating != null) {
+        syncRating(hoveredRating);
+      }
+    });
+
+    starWrapper.addEventListener('pointerleave', () => {
+      syncRating(getCheckedRating());
+    });
+
+    starWrapper.addEventListener('pointerdown', (event) => {
+      if (event.button != null && event.pointerType === 'mouse' && event.button !== 0) {
+        return;
+      }
+      const selectedRating = getRatingFromPosition(event.clientX);
+      if (selectedRating == null) return;
+
+      const targetInput = findRatingInput(selectedRating);
+      if (!targetInput) return;
+
+      event.preventDefault();
+      targetInput.checked = true;
+      targetInput.dispatchEvent(new Event('change', { bubbles: true }));
+      syncRating(selectedRating);
+    });
+
+    starWrapper.addEventListener('click', (event) => {
+      if (event.target.tagName === 'LABEL' && event.detail !== 0) {
+        event.preventDefault();
+      }
+    });
   }
 
   form.addEventListener('submit', async (e) => {
