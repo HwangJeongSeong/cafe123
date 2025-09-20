@@ -105,22 +105,30 @@
               </div>
               <span class="rating-picker__value" id="createRatingValue">4.0</span>
             </div>
-            <input type="range"
-                   id="createRating"
-                   name="rating"
-                   class="rating-picker__range"
-                   min="0.5"
-                   max="5"
-                   step="0.5"
-                   value="4.0"
-                   required>
-            <div class="rating-picker__scale" aria-hidden="true">
-              <span>0.5</span>
-              <span>3.0</span>
-              <span>5.0</span>
+            <div class="rate rating-picker__choices" id="createRatingChoices" role="radiogroup" aria-label="별점 선택">
+              <input type="radio" id="create-rating10" name="rating" value="5.0" title="5점" aria-label="5점" required>
+              <label for="create-rating10"></label>
+              <input type="radio" id="create-rating9" name="rating" value="4.5" title="4.5점" aria-label="4.5점">
+              <label class="half" for="create-rating9"></label>
+              <input type="radio" id="create-rating8" name="rating" value="4.0" title="4점" aria-label="4점" checked>
+              <label for="create-rating8"></label>
+              <input type="radio" id="create-rating7" name="rating" value="3.5" title="3.5점" aria-label="3.5점">
+              <label class="half" for="create-rating7"></label>
+              <input type="radio" id="create-rating6" name="rating" value="3.0" title="3점" aria-label="3점">
+              <label for="create-rating6"></label>
+              <input type="radio" id="create-rating5" name="rating" value="2.5" title="2.5점" aria-label="2.5점">
+              <label class="half" for="create-rating5"></label>
+              <input type="radio" id="create-rating4" name="rating" value="2.0" title="2점" aria-label="2점">
+              <label for="create-rating4"></label>
+              <input type="radio" id="create-rating3" name="rating" value="1.5" title="1.5점" aria-label="1.5점">
+              <label class="half" for="create-rating3"></label>
+              <input type="radio" id="create-rating2" name="rating" value="1.0" title="1점" aria-label="1점">
+              <label for="create-rating2"></label>
+              <input type="radio" id="create-rating1" name="rating" value="0.5" title="0.5점" aria-label="0.5점">
+              <label class="half" for="create-rating1"></label>
             </div>
           </div>
-          <p class="rating-picker__hint">슬라이더를 움직여 절반 단위로 별점을 선택할 수 있어요.</p>
+          <p class="rating-picker__hint">별을 눌러 절반 단위로 평점을 선택할 수 있어요.</p>
         </fieldset>
 
         <div class="review-create__field">

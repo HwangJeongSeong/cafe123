@@ -7,12 +7,17 @@
   const csrfToken  = document.querySelector('meta[name="_csrf"]')?.getAttribute('content');
   const csrfHeader = document.querySelector('meta[name="_csrf_header"]')?.getAttribute('content');
 
-  const ratingSlider = document.getElementById('createRating');
+  const ratingInputs = Array.from(form.querySelectorAll('input[name="rating"]'));
   const ratingDisplay = document.querySelector('[data-rating-display]');
   const ratingValue = document.getElementById('createRatingValue');
 
-  const minRating = ratingSlider ? Number.parseFloat(ratingSlider.min) : 0;
-  const maxRating = ratingSlider ? Number.parseFloat(ratingSlider.max) : 5;
+  const ratingValues = ratingInputs
+    .map((input) => Number.parseFloat(input.value))
+    .filter((value) => Number.isFinite(value))
+    .sort((a, b) => a - b);
+
+  const minRating = ratingValues.length ? ratingValues[0] : 0;
+  const maxRating = ratingValues.length ? ratingValues[ratingValues.length - 1] : 5;
 
   const syncRating = (value) => {
     const numericValue = Number.parseFloat(value);
@@ -26,14 +31,27 @@
     }
   };
 
-  if (ratingSlider) {
-    syncRating(ratingSlider.value || ratingSlider.getAttribute('value'));
-    ratingSlider.addEventListener('input', (event) => {
-      syncRating(event.target.value);
+  const getCheckedRating = () => {
+    const checked = ratingInputs.find((input) => input.checked);
+    if (checked) {
+      return checked.value;
+    }
+    const defaultChecked = ratingInputs.find((input) => input.defaultChecked);
+    if (defaultChecked) {
+      return defaultChecked.value;
+    }
+    return ratingValues.length ? ratingValues[Math.floor(ratingValues.length / 2)] : maxRating;
+  };
+
+  if (ratingInputs.length) {
+    syncRating(getCheckedRating());
+    ratingInputs.forEach((input) => {
+      input.addEventListener('change', () => {
+        syncRating(input.value);
+      });
     });
-    ratingSlider.addEventListener('change', (event) => {
-      syncRating(event.target.value);
-    });
+  } else {
+    syncRating(minRating);
   }
 
   form.addEventListener('submit', async (e) => {
@@ -96,8 +114,10 @@
       // 3) 폼 리셋
       form.reset();
       form.classList.remove('was-validated');
-      if (ratingSlider) {
-        syncRating(ratingSlider.value || ratingSlider.getAttribute('value'));
+      if (ratingInputs.length) {
+        syncRating(getCheckedRating());
+      } else {
+        syncRating(minRating);
       }
       if (cafeId) {
         localStorage.removeItem('certifiedCafe_' + cafeId);
