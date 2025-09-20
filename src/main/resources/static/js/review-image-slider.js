@@ -17,11 +17,9 @@ function syncReviewImageAspectRatios() {
       if (!img.naturalWidth || !img.naturalHeight) {
         return;
       }
-      var ratio = img.naturalHeight / img.naturalWidth;
-      if (!isFinite(ratio) || ratio <= 0) {
-        return;
-      }
-      wrapper.style.setProperty('--image-aspect-ratio', ratio.toString());
+      // 리뷰 상세에서는 이미지를 항상 정사각형으로 보여주기 위해
+      // 기본 CSS에서 지정한 1:1 비율을 그대로 유지한다.
+      wrapper.style.setProperty('--image-aspect-ratio', '1');
     }
 
     if (img.complete) {
