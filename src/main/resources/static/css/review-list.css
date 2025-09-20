@@ -194,7 +194,7 @@ body {
   border: none;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 28px 64px rgba(47, 31, 27, 0.28);
+  box-shadow: 0 34px 88px rgba(47, 31, 27, 0.35);
   background: var(--surface);
 }
 
@@ -456,7 +456,7 @@ body {
   border-radius: var(--radius-lg);
   border: 1px solid rgba(47, 31, 27, 0.08);
   padding: 1.8rem;
-  box-shadow: 0 16px 40px rgba(47, 31, 27, 0.18);
+  box-shadow: 0 10px 26px rgba(47, 31, 27, 0.14);
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
