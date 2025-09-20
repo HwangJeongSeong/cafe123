@@ -118,23 +118,23 @@
                   aria-label="선택한 새 이미지 목록"></ul>
             </div>
           </div>
-        </form>
 
-        <div class="review-edit__existing"
-             id="existingImageList"
-             th:if="${form.imageUrl != null && !form.imageUrl.isEmpty()}">
-          <div class="review-edit__existing-header">
-            <h2 class="review-edit__existing-title">등록된 이미지</h2>
-            <p class="review-edit__existing-hint">불필요한 이미지를 선택해서 삭제할 수 있어요.</p>
-          </div>
-          <div class="review-edit__existing-grid">
-            <div class="review-edit__existing-item" th:each="img : ${form.imageUrl}">
-              <input type="hidden" name="imageUrl" th:value="${img}"/>
-              <img th:src="${img}" alt="review image">
-              <button type="button" class="review-edit__existing-remove" aria-label="이미지 삭제"></button>
+          <div class="review-edit__existing"
+               id="existingImageList"
+               th:if="${form.imageUrl != null && !form.imageUrl.isEmpty()}">
+            <div class="review-edit__existing-header">
+              <h2 class="review-edit__existing-title">등록된 이미지</h2>
+              <p class="review-edit__existing-hint">불필요한 이미지를 선택해서 삭제할 수 있어요.</p>
+            </div>
+            <div class="review-edit__existing-grid">
+              <div class="review-edit__existing-item" th:each="img : ${form.imageUrl}">
+                <input type="hidden" name="imageUrl" th:value="${img}"/>
+                <img th:src="${img}" alt="review image">
+                <button type="button" class="review-edit__existing-remove" aria-label="이미지 삭제"></button>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
 
         <div class="review-edit__actions" role="group" aria-label="리뷰 수정 액션">
           <button class="btn btn-primary review-submit-btn" type="submit" form="reviewEditForm">수정 완료</button>
