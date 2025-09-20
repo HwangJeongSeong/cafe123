@@ -520,7 +520,8 @@ body {
 
 .review-edit__delete-form {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  margin: 0;
 }
 
 .review-edit__delete-form .btn {

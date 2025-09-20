@@ -168,15 +168,14 @@
         <section class="form-section form-section--summary" aria-label="리뷰 수정 요약">
           <div class="review-edit__actions">
             <button class="btn btn-primary" type="submit">수정 완료</button>
+            <form th:action="@{|/reviews/${review.id}/delete|}" method="post" class="review-edit__delete-form"
+                  onsubmit="return confirm('정말 삭제하시겠습니까?');">
+              <input type="hidden" th:if="${_csrf}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+              <button type="submit" class="btn btn-danger">리뷰 삭제</button>
+            </form>
             <a th:href="@{|/reviews/${review.id}|}" class="btn btn-outline-secondary">취소</a>
           </div>
         </section>
-      </form>
-
-      <form th:action="@{|/reviews/${review.id}/delete|}" method="post" class="review-edit__delete-form"
-            onsubmit="return confirm('정말 삭제하시겠습니까?');">
-        <input type="hidden" th:if="${_csrf}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        <button type="submit" class="btn btn-danger btn-sm">리뷰 삭제</button>
       </form>
     </div>
   </section>
