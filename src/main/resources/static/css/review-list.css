@@ -664,9 +664,11 @@ body {
 }
 
 .rate {
+  --rate-star-size: 1.35rem;
   display: inline-flex;
   flex-direction: row-reverse;
-  gap: 0.15rem;
+  align-items: center;
+  gap: 0;
   border: 0;
 }
 
@@ -676,9 +678,20 @@ body {
 
 .rate > label {
   position: relative;
-  width: 1.35rem;
-  height: 1.35rem;
+  width: var(--rate-star-size);
+  height: var(--rate-star-size);
   cursor: pointer;
+}
+
+.rate > label.half {
+  width: calc(var(--rate-star-size) / 2);
+  margin-left: 0;
+  margin-right: calc(var(--rate-star-size) / -2 + 0.15rem);
+  z-index: 1;
+}
+
+.rate > label.half:last-of-type {
+  margin-right: calc(var(--rate-star-size) / -2);
 }
 
 .rate > label::before,
@@ -698,8 +711,15 @@ body {
 .rate > label::after {
   background-color: var(--accent);
   transform: scaleX(0);
-  transform-origin: left center;
   transition: transform 0.2s ease;
+}
+
+.rate > label.half::before {
+  background-color: transparent;
+}
+
+.rate > label::after {
+  transform-origin: left center;
 }
 
 .rate > input:checked ~ label::after,
@@ -710,7 +730,7 @@ body {
 
 .rate > input:checked + label.half::after,
 .rate label.half:hover::after {
-  transform: scaleX(0.5);
+  transform: scaleX(1);
 }
 
 .rate label.half:hover ~ label::after {
