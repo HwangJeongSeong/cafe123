@@ -216,6 +216,7 @@ body {
 }
 
 .review-image-wrapper {
+  --image-aspect-ratio: 1;
   position: relative;
   display: block;
   border-radius: 20px;
