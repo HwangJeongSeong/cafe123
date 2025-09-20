@@ -287,6 +287,7 @@
       renderFileList();
       if (synced) {
         input.value = '';
+        syncImageInput();
       }
 
       if (messages.length) {
