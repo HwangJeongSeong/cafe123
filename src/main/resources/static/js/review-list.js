@@ -17,6 +17,19 @@
   const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
   const MAX_FILE_COUNT = imageInput ? Number.parseInt(imageInput.getAttribute('data-max-files') || '10', 10) : 10;
 
+  const refreshReviewSectionUI = () => {
+    if (typeof window.syncReviewImageAspectRatios === 'function') {
+      window.syncReviewImageAspectRatios();
+    }
+    if (typeof window.initReviewImageSlider === 'function') {
+      window.initReviewImageSlider();
+    }
+    if (typeof window.initReviewImageMagnifier === 'function') {
+      window.initReviewImageMagnifier();
+    }
+  };
+  window.refreshReviewSectionUI = refreshReviewSectionUI;
+
   const syncSelectedFileView = () => {
     if (!imageList) return;
     imageList.innerHTML = '';
@@ -272,6 +285,7 @@
       if (!newSection || !oldSection) throw new Error('섹션 엘리먼트를 찾을 수 없습니다.');
 
       oldSection.replaceWith(newSection);
+      refreshReviewSectionUI();
 
       // 3) 폼 리셋
       form.reset();
