@@ -61,7 +61,8 @@ public class ImageStorageService {
         String ext = getExtension(originalName);
 
         // MIME 기본 검증(선택) - 이미지인지 대략 체크
-        if (!file.getContentType( ).startsWith("image/")) {
+        String contentType = file.getContentType();
+        if (contentType != null && !contentType.startsWith("image/")) {
             throw new IllegalArgumentException("이미지 파일만 업로드할 수 있습니다.");
         }
 
