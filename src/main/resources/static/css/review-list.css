@@ -719,8 +719,14 @@ body {
 
 .review-card__gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
+  justify-content: flex-start;
   gap: 1rem;
+}
+
+.review-card__gallery .gallery-item {
+  width: 150px;
+  max-width: 100%;
 }
 
 .gallery-item {
