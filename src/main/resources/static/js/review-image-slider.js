@@ -130,6 +130,7 @@ function initReviewImageMagnifier() {
       requestAnimationFrame(function () {
         lens.classList.add('is-visible');
       });
+      wrapper.classList.add('is-magnifying');
       moveLens(clientX, clientY);
     }
 
@@ -138,6 +139,7 @@ function initReviewImageMagnifier() {
         return;
       }
       lens.classList.remove('is-visible');
+      wrapper.classList.remove('is-magnifying');
       window.setTimeout(function () {
         if (lens.parentNode && !lens.classList.contains('is-visible')) {
           lens.parentNode.removeChild(lens);
