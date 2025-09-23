@@ -11,8 +11,8 @@
 
 .floating-back-btn {
   position: fixed;
-  top: 120px;
-  left: 24px;
+  right: 24px;
+  bottom: 24px;
   width: 52px;
   height: 52px;
   border-radius: 50%;
@@ -42,8 +42,8 @@
 
 @media (max-width: 768px) {
   .floating-back-btn {
-    top: 88px;
-    left: 16px;
+    right: 16px;
+    bottom: 16px;
     width: 44px;
     height: 44px;
   }
