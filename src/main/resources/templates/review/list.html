@@ -13,6 +13,13 @@
 
 <div layout:fragment="content" class="container mt-4 review-page">
 
+  <button type="button"
+          class="floating-back-btn"
+          onclick="window.history.back()">
+    <span class="visually-hidden">이전 페이지로 이동</span>
+    <span aria-hidden="true" class="floating-back-btn__icon">&#8592;</span>
+  </button>
+
   <!-- 상단 요약 -->
   <section id="reviewsSummary"
            th:fragment="summary"
