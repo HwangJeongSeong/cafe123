@@ -6,7 +6,7 @@ let stayTimer = null;
 let certified = false;
 let cafeMarkerImage;
 let userMarkerImage;
-const loadingOverlay = document.getElementById('loadingOverlay');
+let loadingOverlay;
 
 const DISTANCE_THRESHOLD = 100; // meters
 const STAY_DURATION = 5000; // milliseconds
@@ -130,5 +130,7 @@ function loadKakao() {
         setTimeout(loadKakao, 50);
     }
 }
-
-loadKakao();
+document.addEventListener('DOMContentLoaded', () => {
+    loadingOverlay = document.getElementById('loadingOverlay');
+    loadKakao();
+});
